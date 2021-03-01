@@ -364,7 +364,7 @@ export default function createListComponent({
         createElement(innerElementType || innerTagName || 'div', {
           children: items,
           ref: innerRef,
-          className: innerClasses,
+          className: innerClasseName,
           style: {
             height: isHorizontal ? '100%' : estimatedTotalSize,
             pointerEvents: isScrolling ? 'none' : undefined,
