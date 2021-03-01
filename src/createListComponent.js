@@ -64,6 +64,8 @@ export type Props<T> = {|
   innerRef?: any,
   innerElementType?: string | React$AbstractComponent<InnerProps, any>,
   innerTagName?: string, // deprecated
+  innerClassName?: string,
+  innerStyle?: Object,
   itemCount: number,
   itemData: T,
   itemKey?: (index: number, data: T) => any,
@@ -296,6 +298,8 @@ export default function createListComponent({
         innerRef,
         innerElementType,
         innerTagName,
+        innerClassName,
+        innerStyle,
         itemCount,
         itemData,
         itemKey = defaultItemKey,
@@ -360,10 +364,12 @@ export default function createListComponent({
         createElement(innerElementType || innerTagName || 'div', {
           children: items,
           ref: innerRef,
+          className: innerClasses,
           style: {
             height: isHorizontal ? '100%' : estimatedTotalSize,
             pointerEvents: isScrolling ? 'none' : undefined,
             width: isHorizontal ? estimatedTotalSize : '100%',
+            ...innerStyle
           },
         })
       );
